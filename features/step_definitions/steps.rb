@@ -47,7 +47,13 @@ Given /^the output should be sorted and complete/ do
 			for n in 1..savedOutput.length
 				puts "Line #{n}: #{savedOutput[n-1]}"
 			end
-			raise("'#{output[i]}' does not match '#{commaCount} #{users[i].userid}'")
+			puts "\nExpected output (minus the header line):"
+			for n in 1..users.length-1
+		        commaCount = users[n-1].count.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
+				puts "Line #{n}: #{commaCount} #{users[n-1].userid}"
+			end
+		    commaCount = users[i].count.to_s.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,")
+			raise("'#{output[i]}' should be '#{commaCount} #{users[i].userid}'")
 		end
 	end
 end
