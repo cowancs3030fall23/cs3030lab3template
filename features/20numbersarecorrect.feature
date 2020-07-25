@@ -1,4 +1,4 @@
-@announce-output
+#@announce-output
 
 Feature: Program output should be correct
 	Scenario: exit code is zero for normal execution
