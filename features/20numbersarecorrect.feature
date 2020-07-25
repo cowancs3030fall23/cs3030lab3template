@@ -1,3 +1,5 @@
+@announce-output
+
 Feature: Program output should be correct
 	Scenario: exit code is zero for normal execution
 		Given a random logfile named log2

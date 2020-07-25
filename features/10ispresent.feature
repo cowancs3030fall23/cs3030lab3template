@@ -1,3 +1,5 @@
+@announce-output
+
 Feature: Script must be named "flog", present and be marked as executable
 	Scenario: flog must be found
 		When I run `getfile` 
