@@ -1,20 +1,21 @@
-#@announce-output
-
 Feature: Program output should be correct
 	Scenario: exit code is zero for normal execution
 		Given a random logfile named log2
 		Given timeout is increased by 60 seconds
 		When I run `flog log2`
+        And OUTPUT is printed
 		Then the exit status should be 0
 		Then 10 points are awarded
 		
 	Scenario: exit code is 1 if PATH is missing
 		When I run `flog`
+        And OUTPUT is printed
 		Then the exit status should be 1
 		Then 10 points are awarded
 		
 	Scenario: Usage statement should be printed for abnormal execution
 		When I run `flog`
+        And OUTPUT is printed
 		Then the output should contain "Usage"
 		Then 10 points are awarded
 
@@ -22,6 +23,7 @@ Feature: Program output should be correct
 		Given a random logfile named log1
 		Given timeout is increased by 60 seconds
 		When I run `bash -c 'flog log1 | lynx -nomargins -stdin -dump'`
+        And OUTPUT is printed
 		And header contains "Failed Login Attempts Report as of"
 		And header ends with the current date
 		Then 20 points are awarded
@@ -30,6 +32,7 @@ Feature: Program output should be correct
 		Given a random logfile named log1
 		Given timeout is increased by 60 seconds
 		When I run `flog log1`
+        And OUTPUT is printed
 		Then the output should match:
 		"""
 		<html>.*</html>
@@ -52,6 +55,7 @@ Feature: Program output should be correct
 		Given a random logfile named log2
 		Given timeout is increased by 60 seconds
 		When I run `bash -c 'flog log2 | lynx -nomargins -stdin -dump'`
+        And OUTPUT is printed
 		Then the output should match:
 		"""
 		[ \t]+Failed Login Attempts Report as of .+
@@ -64,6 +68,7 @@ Feature: Program output should be correct
 		Given a random logfile named log3
 		Given timeout is increased by 60 seconds
 		When I run `bash -c 'flog log3 | lynx -nomargins -stdin -dump'`
+        And OUTPUT is printed
 		Then the output should be sorted and complete
 		Then 30 points are awarded
 
@@ -72,6 +77,7 @@ Feature: Program output should be correct
 		Given a random logfile named log3
 		Given timeout is increased by 60 seconds
 		When I run `bash -c 'flog log3 | lynx -nomargins -stdin -dump'`
+        And OUTPUT is printed
 		And large numbers are punctuated with commas
 		Then 30 points are awarded
 
