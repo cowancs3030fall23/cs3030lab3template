@@ -60,7 +60,7 @@ class BuildLog
 			user = @knownUsers[u]
 			# skip those already made large 
 			if largeUsers.include?(user.userid)
-				#puts "Large: already using #{user.userid} with count #{user.count}"
+				#log "Large: already using #{user.userid} with count #{user.count}"
 				redo
 			end
 			user.count = r.rand(LARGECOUNT)
@@ -81,7 +81,7 @@ class BuildLog
 		unknown = Log.new("<UNKNOWN>",@unknownUserEntries)
 		@knownUsers << unknown
 		@knownUsers = @knownUsers.sort_by{|u| [-u.count, u.userid]}
-		#puts knownUsers
+		#log knownUsers
 		
 	end
 	
